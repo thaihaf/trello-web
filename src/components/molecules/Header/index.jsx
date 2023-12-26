@@ -1,6 +1,16 @@
 import TrelloIcon from "@/assets/trello.svg?react";
 import ModeSelect from "@/components/atoms/ModeSelect/ModeSelect.jsx";
-import { Apps, HelpOutline, Notifications } from "@mui/icons-material";
+import {
+  DEFAULT_COLOR,
+  HEADER_BAR_BG,
+  MODE_TITLE,
+} from "@/constants/constants.js";
+import {
+  AddToPhotosOutlined,
+  Apps,
+  HelpOutline,
+  Notifications,
+} from "@mui/icons-material";
 import {
   AppBar,
   Badge,
@@ -9,112 +19,116 @@ import {
   Container,
   Link,
   SvgIcon,
-  TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 
 import AvatarMenu from "./components/AvatarMenu/index.jsx";
 import Recent from "./components/Recent/index.jsx";
+import SearchField from "./components/SearchField/index.jsx";
 import Workspaces from "./components/Workspaces.jsx/index.jsx";
 
 export default function Header() {
   return (
     <AppBar
       position="fixed"
-      sx={{ backgroundColor: "primary.contrastText", overflow: "auto" }}
+      sx={{
+        boxShadow: "none",
+        bgcolor: theme =>
+          theme.palette.mode === MODE_TITLE.darkMode
+            ? HEADER_BAR_BG.darkMode
+            : HEADER_BAR_BG.whiteMode,
+      }}
     >
-      <Container maxWidth="xl">
+      <Container
+        maxWidth="xl"
+        sx={{
+          height: theme => theme.trello.appBarHeigh,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Box
           sx={{
-            width: "100%",
-            height: theme => theme.trello.appBarHeigh,
-            padding: "5px",
             display: "flex",
-            justifyContent: "between",
+            alignItems: "center",
+            gap: 2,
           }}
         >
-          <Box
+          <Apps sx={{ color: DEFAULT_COLOR }} />
+
+          <Link
+            href="#"
             sx={{
-              padding: "5px",
-              display: "flex",
-              justifyContent: "between",
-              alignItems: "center",
-              gap: 2,
-            }}
-          >
-            <Apps sx={{ color: "primary.main" }} />
-
-            <Link
-              href="#"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                textDecoration: "none",
-              }}
-            >
-              <SvgIcon
-                inheritViewBox
-                component={TrelloIcon}
-                sx={{ color: "primary.main" }}
-              />
-              <Typography
-                variant="span"
-                sx={{
-                  fontSize: "1.2rem",
-                  fontWeight: "bold",
-                  color: "primary.main",
-                }}
-              >
-                Trello
-              </Typography>
-            </Link>
-
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                alignItems: "center",
-                gap: 1,
-              }}
-            >
-              <Workspaces />
-              <Recent />
-              <Button variant="outlined">Create</Button>
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              padding: "5px",
               display: "flex",
               alignItems: "center",
-              gap: 2,
-              marginLeft: "auto",
+              gap: 1,
+              textDecoration: "none",
             }}
           >
-            <TextField
-              id="outlined-search"
-              label="Search"
-              type="search"
-              size="small"
-              sx={{ minWidth: 120 }}
+            <SvgIcon
+              inheritViewBox
+              component={TrelloIcon}
+              sx={{ color: DEFAULT_COLOR }}
             />
-            <ModeSelect />
+            <Typography
+              variant="span"
+              sx={{
+                fontSize: "1.7rem",
+                fontWeight: "bold",
+                color: DEFAULT_COLOR,
+              }}
+            >
+              Trello
+            </Typography>
+          </Link>
 
-            <Badge color="secondary" variant="dot" sx={{ cursor: "pointer" }}>
-              <Notifications sx={{ color: "primary.main" }} />
+          <Workspaces />
+          <Recent />
+          <Button
+            variant="outlined"
+            sx={{
+              display: { xs: "none", md: "flex" },
+              color: DEFAULT_COLOR,
+              border: "none",
+              "&:hover": {
+                border: "none",
+              },
+            }}
+            startIcon={<AddToPhotosOutlined />}
+          >
+            Create
+          </Button>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          <SearchField />
+          <ModeSelect />
+
+          <Tooltip title="Notifications">
+            <Badge color="warning" variant="dot" sx={{ cursor: "pointer" }}>
+              <Notifications sx={{ color: DEFAULT_COLOR }} />
             </Badge>
+          </Tooltip>
 
+          <Tooltip title="Helpers">
             <HelpOutline
               sx={{
                 cursor: "pointer",
                 display: { xs: "none", md: "flex" },
-                color: "primary.main",
+                color: DEFAULT_COLOR,
               }}
             />
+          </Tooltip>
 
-            <AvatarMenu />
-          </Box>
+          <AvatarMenu />
         </Box>
       </Container>
     </AppBar>

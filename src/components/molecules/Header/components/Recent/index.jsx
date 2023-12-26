@@ -1,3 +1,4 @@
+import { DEFAULT_COLOR } from "@/constants/constants";
 import { ExpandMore } from "@mui/icons-material";
 import Cloud from "@mui/icons-material/Cloud";
 import ContentCopy from "@mui/icons-material/ContentCopy";
@@ -21,7 +22,7 @@ export default function Recent() {
   };
 
   return (
-    <Box>
+    <Box sx={{ display: { xs: "none", md: "flex" } }}>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -29,6 +30,7 @@ export default function Recent() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         endIcon={<ExpandMore />}
+        sx={{ color: DEFAULT_COLOR }}
       >
         recent
       </Button>
