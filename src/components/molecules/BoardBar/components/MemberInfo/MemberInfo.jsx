@@ -15,9 +15,11 @@ export default function MemberInfo() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = event => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 

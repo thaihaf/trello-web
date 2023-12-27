@@ -1,7 +1,8 @@
-import { BOARD_BAR_BG, DEFAULT_COLOR } from "@/constants/constants";
+import { BOARD_BAR_BG } from "@/constants/constants";
 import { MENU_BOARDBAR_LEFT_STYLE } from "@/constants/style.constants";
 import {
   AddToDrive,
+  Addchart,
   FilterList,
   PersonAdd,
   SpaceDashboard,
@@ -9,12 +10,12 @@ import {
 } from "@mui/icons-material";
 import { AppBar, Box, Button, Chip, Container } from "@mui/material";
 
-import MemberList from "./components/MemberList";
+import MemberList from "./components/MemberList/MemberList";
 
 export default function BoardBar() {
   return (
     <AppBar
-      position="fixed"
+      position="static"
       sx={{
         bgcolor: BOARD_BAR_BG,
         top: theme => theme.trello.appBarHeigh,
@@ -84,11 +85,26 @@ export default function BoardBar() {
                 border: "none",
               },
             }}
+            startIcon={<Addchart />}
+          >
+            Add new column
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{
+              display: { xs: "none", md: "flex" },
+              color: "#282828",
+              border: "none",
+              "&:hover": {
+                border: "none",
+              },
+            }}
             startIcon={<PersonAdd />}
           >
             Invite
           </Button>
-          <MemberList />
+
+          <MemberList maxSize={6} />
         </Box>
       </Container>
     </AppBar>

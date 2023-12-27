@@ -1,16 +1,15 @@
 import { AvatarGroup } from "@mui/material";
+import MemberInfo from "../MemberInfo/MemberInfo";
 
-import MemberInfo from "../MemberInfo";
-
-export default function MemberList() {
+export default function MemberList({ sizeAvt = 34, maxSize = 3, gap = 5 }) {
   return (
     <AvatarGroup
-      max={6}
+      max={maxSize}
       sx={{
-        gap: "3px",
+        gap: `${gap}px`,
         "& .MuiAvatar-root": {
-          width: 34,
-          height: 34,
+          width: sizeAvt,
+          height: sizeAvt,
           fontSize: "13px",
           border: "none",
           backgroundColor: "transparent",

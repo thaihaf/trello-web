@@ -1,10 +1,7 @@
 import TrelloIcon from "@/assets/trello.svg?react";
 import ModeSelect from "@/components/atoms/ModeSelect/ModeSelect.jsx";
-import {
-  DEFAULT_COLOR,
-  HEADER_BAR_BG,
-  MODE_TITLE,
-} from "@/constants/constants.js";
+import { DEFAULT_COLOR } from "@/constants/constants.js";
+import { getBackgroundColor } from "@/utils/utils.js";
 import {
   AddToPhotosOutlined,
   Apps,
@@ -22,22 +19,18 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-
-import AvatarMenu from "./components/AvatarMenu/index.jsx";
-import Recent from "./components/Recent/index.jsx";
-import SearchField from "./components/SearchField/index.jsx";
-import Workspaces from "./components/Workspaces.jsx/index.jsx";
+import Workspaces from "./components/Workspaces/Workspaces";
+import Recent from "./components/Recent/Recent";
+import SearchField from "./components/SearchField/SearchField";
+import AvatarMenu from "./components/AvatarMenu/AvatarMenu";
 
 export default function Header() {
   return (
     <AppBar
-      position="fixed"
+      position="static"
       sx={{
         boxShadow: "none",
-        bgcolor: theme =>
-          theme.palette.mode === MODE_TITLE.darkMode
-            ? HEADER_BAR_BG.darkMode
-            : HEADER_BAR_BG.whiteMode,
+        bgcolor: theme => getBackgroundColor(theme),
       }}
     >
       <Container

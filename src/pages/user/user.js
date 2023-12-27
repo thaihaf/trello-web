@@ -1,1 +1,1 @@
-export * from "./screens/UserScreen";
+export * from "./screens/UserScreen/UserScreen";
