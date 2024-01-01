@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
-import Header from "../molecules/Header/Header";
+
 import BoardBar from "../molecules/BoardBar/BoardBar";
+import Header from "../molecules/Header/Header";
 
 export default function DefaultLayout({ children }) {
   return (
