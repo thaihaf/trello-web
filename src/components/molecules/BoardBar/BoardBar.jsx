@@ -1,5 +1,7 @@
+import { mockData } from "@/api/mock-data";
 import { BOARD_BAR_BG } from "@/constants/constants";
 import { MENU_BOARDBAR_LEFT_STYLE } from "@/constants/style.constants";
+import { capitalizeFirstLetter } from "@/utils/formatters";
 import {
   AddToDrive,
   Addchart,
@@ -13,6 +15,7 @@ import { AppBar, Box, Button, Chip, Container } from "@mui/material";
 import MemberList from "./components/MemberList/MemberList";
 
 export default function BoardBar() {
+  const data = mockData?.board;
   return (
     <AppBar
       position="static"
@@ -40,14 +43,14 @@ export default function BoardBar() {
         >
           <Chip
             icon={<SpaceDashboard />}
-            label="Trello App Board"
+            label={data.title}
             variant="outlined"
             onClick={() => {}}
             sx={MENU_BOARDBAR_LEFT_STYLE}
           />
           <Chip
             icon={<VpnLock />}
-            label="Public/Private Workspaces"
+            label={capitalizeFirstLetter(data.type)}
             variant="outlined"
             onClick={() => {}}
             sx={MENU_BOARDBAR_LEFT_STYLE}
