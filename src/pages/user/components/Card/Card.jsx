@@ -42,6 +42,7 @@ export default function Card({ card }) {
           borderRadius: "10px",
           boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
           cursor: "pointer",
+          display: card?.FE_placeholderCard ? "none" : "block",
         }}
         onClick={handleOpen}
         ref={setNodeRef}
